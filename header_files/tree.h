@@ -19,7 +19,15 @@ class tree
         void Insert(int value);
         void Deletion(tree n);
         void FillTree();
+        bool isAVL();
+        int getHeight(node* node);
+        int getBalanceFactor(node* node);
+        node* getHead(){return head;};
+        void printBalanceFactors(bool &isAVL);
+        void printBalanceFactorsHelper(node* node, bool &isAVL);
+
     private:
+
         node* head;
         int fillIndex = 0;
         vector<int> values;

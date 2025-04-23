@@ -21,6 +21,10 @@ int main() {
                 file f;
                 binaryTree = make_unique<tree>(f.numbers);
                 binaryTree->FillTree();
+                cout<<binaryTree->getHead()->key <<endl;
+
+                cout<< binaryTree->getHeight(binaryTree->getHead()) <<endl;
+                binaryTree->isAVL();
             break;
         }
         case 2:
