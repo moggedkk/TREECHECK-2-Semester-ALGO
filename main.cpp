@@ -1,14 +1,16 @@
 #include <iostream>
+#include <memory>
 #include "header_files/tree.h"
 #include "header_files/file.h"
 
 using namespace std;
+
 int main() {
     cout << "#################################" << endl;
     cout << "########## Binary TREE ##########" << endl;
     cout << "#################################\n" << endl;
-    tree binarytree;
     int input;
+    unique_ptr<tree> binaryTree = nullptr;
     do
     {
         cout << "1 Read Tree | 2 Search Tree | 3 Exit" << endl;
@@ -16,10 +18,13 @@ int main() {
         switch (input)
         {
         case 1 :{
-            file f;
+                file f;
+                binaryTree = make_unique<tree>(f.numbers);
+                binaryTree->FillTree();
             break;
         }
         case 2:
+
             break;
         case 3:
             input = 0;
@@ -30,3 +35,5 @@ int main() {
     }while (input != 0);
     return 0;
 }
+
+

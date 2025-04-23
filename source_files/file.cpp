@@ -25,8 +25,29 @@ file::file()
     {
         while (getline(openedFile, number))
         {
-            this->numbers.push_back(int(number[0]));
+            this->numbers.push_back(stoi(number));
             cout << number[0] << endl;
+        }
+        DeleteDuplicates();
+    }
+}
+
+void file::DeleteDuplicates()
+{
+    for (int i = 0; i < numbers.size(); ++i)
+    {
+        for (int j = i + 1; j < numbers.size(); )
+        {
+            if (numbers[i] == numbers[j])
+            {
+                int duplicate = numbers[j];
+                numbers.erase(numbers.begin() + j);
+                cout << "Delete duplicate number: " << duplicate << endl;
+            }
+            else
+            {
+                ++j;
+            }
         }
     }
 }

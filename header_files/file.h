@@ -9,5 +9,6 @@ class file {
     public:
         file();
         vector<int> numbers;
+        void DeleteDuplicates();
 };
 #endif //FILE_H
