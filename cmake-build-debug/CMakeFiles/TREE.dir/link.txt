@@ -1,1 +1,0 @@
-/usr/bin/c++ -g -Wl,--dependency-file=CMakeFiles/TREE.dir/link.d CMakeFiles/TREE.dir/main.cpp.o CMakeFiles/TREE.dir/source_files/tree.cpp.o CMakeFiles/TREE.dir/source_files/file.cpp.o -o TREE
