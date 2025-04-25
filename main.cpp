@@ -2,6 +2,8 @@
 #include <memory>
 #include "header_files/tree.h"
 #include "header_files/file.h"
+#include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -25,10 +27,43 @@ int main() {
 
                 cout<< binaryTree->getHeight(binaryTree->getHead()) <<endl;
                 binaryTree->isAVL();
+                binaryTree->findMax();
+                binaryTree->findMin();
+                binaryTree->findAvgPublic();
             break;
         }
         case 2:
+            if (!binaryTree) {
+                cout << "No Tree" << endl;
+                break;
+            }
+            cout<<"1 Search Value | 2 Search Subtree" << endl;
+            int valueOrTree;
+            cin >> valueOrTree;
+            switch (valueOrTree) {
 
+                case 1 : {
+                    int value;
+                    cin >> value;
+                    binaryTree->searchValue(value);
+                    break;
+                case 2:
+
+                        cout << "Enter Subtree" << endl;
+                        vector<int> subtree;
+                        string line;
+                        cin.ignore(); // Flush newline from previous cin
+                        getline(cin, line);
+                        istringstream iss(line);
+                        int num;
+                        while (iss >> num) {
+                            subtree.push_back(num);
+                        }
+                        binaryTree->searchSubTree(subtree);
+                        break;
+
+                    }
+            }
             break;
         case 3:
             input = 0;

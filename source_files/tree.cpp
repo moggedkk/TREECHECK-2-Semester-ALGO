@@ -111,6 +111,113 @@ void tree::printBalanceFactorsHelper(node* node, bool& isAVL)  {
 
     std::cout << std::endl;
 }
+void tree::findMax() {
+    node* current = head;
+    if (current == nullptr) {
+        return;
+    }
+    while (current->right != nullptr) {
+        current = current->right;
+    }
+    std::cout << "Max: " << current->key << std::endl;
+}
+void tree::findMin() {
+    node* current = head;
+    if (current == nullptr) {
+        return;
+    }
+    while (current->left != nullptr) {
+        current = current->left;
+    }
+    std::cout << "Min: " << current->key << std::endl;
+}
+void tree::findAvgPublic() {
+
+    double sum = 0;
+    double count = 0;
+    findAvgPrivate(sum, count, head);
+    cout << "Average: " << sum/count << endl;
+}
+
+void tree::findAvgPrivate(double &sum, double &count, node* node) {
+    if (node == nullptr) {
+        return;
+    }
+    sum += node->key;
+    count++;
+    findAvgPrivate(sum, count, node->left);
+    findAvgPrivate(sum, count, node->right);
+}
+void tree::searchValue(int value) {
+
+    searchValuePrivate(value, head, path);
+}
+void tree::searchValuePrivate(int value, node* node, vector<int>path) {
+    if (node == nullptr) {
+        cout << value<<" not found "  << endl;
+        return;
+    }
+    path.push_back(node->key);
+    if (node->key == value) {
+        cout <<value <<" found  " << endl;
+        for (auto value: path) {
+            cout << value << ", ";
+        }
+        cout << endl;
+        return;
+    }
+    if (value < node->key) {
+        searchValuePrivate(value, node->left, path);
+    }else {
+        searchValuePrivate(value, node->right, path);
+    }
+    //entfernt element beim rekursiven aufrufe die den value nicht finden
+    path.pop_back();
+}
+
+void tree::searchSubTree(vector<int>subtree) {
+    this->subtree = subtree;
+    int index = 0;
+    if (searchSubTreePrivate(index, head)) {
+        cout <<"Subtree found! "<<endl;
+    }else {
+        cout <<"Subtree not found! "<<endl;
+    }
+    this->subtree.clear();
+}
+bool tree::searchSubTreePrivate(int &index, node* node) {
+    cout << "At index: " << index << ", value: " << subtree[index] << endl;
+    if (node == nullptr && index >= subtree.size()) {
+        return true;
+    }
+    if (node == nullptr && index < subtree.size()) {
+        return false;
+    }
+    if (node &&node->key == this->subtree[index]) {
+        if (index + 1 >= subtree.size()) {
+            return true; // done matching all elements
+        }
+        index++;
+        if (this->subtree[index] < node->key ) {
+            cout<<"going left and we found"<<this->subtree[index-1] <<endl;
+            return searchSubTreePrivate(index, node->left);
+        }else {
+            cout<<"going right and we found"<<this->subtree[index-1] <<endl;
+            return searchSubTreePrivate(index, node->right);
+        }
+        ;
+    }else if (node->key > this->subtree[index]) {
+        cout<<"going left"<<endl;
+        cout<<node->key<<" is smaller than "<<this->subtree[index]<<endl;
+        return searchSubTreePrivate(index, node->left);
+    }else if (node->key < this->subtree[index]) {
+        cout<<"going right"<<endl;
+        return searchSubTreePrivate(index, node->right);
+    }
+
+}
+
+
 
 
 
