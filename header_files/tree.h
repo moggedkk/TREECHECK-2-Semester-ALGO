@@ -13,11 +13,10 @@ struct node
 class tree
 {
     public:
-        tree();
+
         tree(vector<int> values);
         node* CreateNode(int value);
         void Insert(int value);
-        void Deletion(tree n);
         void FillTree();
         bool isAVL();
         int getHeight(node* node);
@@ -28,6 +27,8 @@ class tree
         void findAvgPublic();
         void searchValue(int value);
         void searchSubTree(vector<int> subtree);
+        ~tree() = default;
+        
 
 
     private:

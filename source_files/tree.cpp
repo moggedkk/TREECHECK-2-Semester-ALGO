@@ -58,7 +58,7 @@ void tree::FillTree()
 }
 int tree::getBalanceFactor(node *node) {
     if (node == nullptr) {
-
+        return 0;
     }
     return getHeight(node->right)-getHeight(node->left);
 }
